@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+{{> partials/header}}
+<body>
+{{> partials/nav}}
+
+<form action="/" method="get">
+    <select name="version">
+        <option value="normal">Normal</option>
+        <option value="dark">Dark</option>
+        <option value="female">Female</option>
+    </select>
+    <select name="name">
+        <option value="dominating">Dominating!</option>
+        <option value="firstblood">First Blood.</option>
+        <option value="godlike">God Like!</option>
+    </select>
+    <button type="submit">Play!</button>
+</form>
+
+{{#soundname}}
+{{#version}}
+<!-- Simple audio playback -->
+<audio src="/{{version}}/{{soundname}}.wav" autoplay>
+    Your browser does not support the <code>audio</code> element.
+</audio>
+{{/version}}
+{{/soundname}}
+
+
+</body>
