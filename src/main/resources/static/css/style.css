@@ -8,3 +8,7 @@ display:block;margin:30px 0;width:100px;height:2px;background-color:#fff
 .titleText {
 display:block;margin:30px
 }
+.console {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 5.5em;
+}
