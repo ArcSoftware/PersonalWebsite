@@ -56,3 +56,17 @@ window.onload = function() {
   css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #666 }";
   document.body.appendChild(css);
 };
+
+//document.querySelector(".show").addEventListener("click", function() {
+//    document.querySelector(".text-muted").classList.remove("hide")
+//});
+
+window.addEventListener('load', function () {
+    let groupElements = document.querySelectorAll('.show');
+
+    for (let i = 0; i < groupElements.length; i++) {
+        groupElements[i].addEventListener('click', function () {
+            groupElements[i].textContent = groupElements[i].dataset.groups;
+        });
+    }
+});
