@@ -12,3 +12,15 @@ display:block;margin:30px
     font-family: "Courier New", Courier, monospace;
     font-size: 5.5em;
 }
+.flex {
+    display:flex;
+    flex-direction:row;
+    max-height:500px;
+    flex-wrap:wrap;
+
+}
+.img-responsive {
+    max-height:500px;
+
+
+}
