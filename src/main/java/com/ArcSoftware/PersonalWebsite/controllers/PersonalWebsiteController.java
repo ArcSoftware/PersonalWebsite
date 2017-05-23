@@ -24,25 +24,26 @@ public class PersonalWebsiteController {
     }
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
-    public String homePage() {
+    public String homePage(Model model) {
+        model.addAttribute("home", true);
         return "index";
     }
 
-    @RequestMapping(path = "/dogs.html", method = RequestMethod.GET)
+    @RequestMapping(path = "/dogs", method = RequestMethod.GET)
     public String dogs(Model model) {
         ImgurData imageData = imageService.getData();
         model.addAttribute("images", imageData.getImages());
         return "dogs";
     }
 
-    @RequestMapping(path = "/soundboard.html", method = RequestMethod.GET)
+    @RequestMapping(path = "/soundboard", method = RequestMethod.GET)
     public String homePage(Model model, String name, String version) {
         model.addAttribute("soundname", name);
         model.addAttribute("version", version);
         return "soundboard";
     }
 
-    @RequestMapping(path = "/weather.html", method = RequestMethod.GET)
+    @RequestMapping(path = "/weather", method = RequestMethod.GET)
     public String weather(Model model) {
         WeatherData weatherData = weatherService.getWeather();
         model.addAttribute("weather", weatherData.getCurrent());

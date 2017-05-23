@@ -25,7 +25,7 @@ public class ImageService {
 
         HttpHeaders headers = new HttpHeaders();
         List<String> authheaders = new ArrayList<>();
-        authheaders.add("Client-ID acbd2ea05d245d6");
+        authheaders.add(String.format("Client-ID %s", System.getenv("ISK")));
         headers.put("authorization", authheaders);
         HttpEntity<ImgurData> data = new HttpEntity<>(new ImgurData(), headers);
         HttpEntity<ImgurData> response = template.exchange("https://api.imgur.com/3/album/OqVcK/images",

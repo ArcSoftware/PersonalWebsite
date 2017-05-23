@@ -7,6 +7,9 @@ import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Jake on 5/22/17.
  */
@@ -20,11 +23,11 @@ public class WeatherService {
 
     public WeatherData getWeather() {
         HttpHeaders headers = new HttpHeaders();
-
-        HttpEntity<WeatherData> data = new HttpEntity<>(new WeatherData(), headers);
-
-        HttpEntity<WeatherData> response = template.exchange("https://api.darksky.net/forecast/d4de52a78e006795bc3f" +
-                "009e037fceb9/35.2271,80.8431", HttpMethod.GET, data, WeatherData.class);
+        List<String> authheaders = new ArrayList<>();
+        authheaders.add(String.format("%s", System.getenv("DSKY_SKEY")));
+        headers.put("authorization", authheaders);
+        HttpEntity<WeatherData> response = template.exchange("https://api.darksky.net/forecast/{authorization}" +
+                "/35.2271,80.8431", HttpMethod.GET, null, WeatherData.class, authheaders);
 
         return response.getBody();
     }

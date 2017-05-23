@@ -8,7 +8,9 @@ import java.util.List;
 public class WeatherData {
     private double latitude;
     private double longitude;
-    private List<Currently> current;
+    private String timezone;
+    private int offset;
+    private List<Currently> currently;
     private List<Alert> alerts;
 
     public double getLatitude() {
@@ -28,11 +30,11 @@ public class WeatherData {
     }
 
     public List<Currently> getCurrent() {
-        return current;
+        return currently;
     }
 
-    public void setCurrent(List<Currently> current) {
-        this.current = current;
+    public void setCurrent(List<Currently> currently) {
+        this.currently = currently;
     }
 
     public List<Alert> getAlerts() {
@@ -43,6 +45,30 @@ public class WeatherData {
         this.alerts = alerts;
     }
 
+    public String getTimezone() {
+        return timezone;
+    }
+
+    public void setTimezone(String timezone) {
+        this.timezone = timezone;
+    }
+
+    public int getOffset() {
+        return offset;
+    }
+
+    public void setOffset(int offset) {
+        this.offset = offset;
+    }
+
+    public List<Currently> getCurrently() {
+        return currently;
+    }
+
+    public void setCurrently(List<Currently> currently) {
+        this.currently = currently;
+    }
+
     public WeatherData() {
     }
 
@@ -51,7 +77,7 @@ public class WeatherData {
         String summary;
         String icon;
         Integer nearestStorm;
-        Integer temprature;
+        Integer temperature;
         double humidity;
         double windspeed;
 
@@ -88,11 +114,11 @@ public class WeatherData {
         }
 
         public Integer getTemprature() {
-            return temprature;
+            return temperature;
         }
 
         public void setTemprature(Integer temprature) {
-            this.temprature = temprature;
+            this.temperature = temperature;
         }
 
         public double getHumidity() {
