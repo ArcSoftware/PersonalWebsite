@@ -2,13 +2,12 @@ package com.ArcSoftware.PersonalWebsite.services;
 
 import com.ArcSoftware.PersonalWebsite.models.WeatherData;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Jake on 5/22/17.
@@ -22,12 +21,11 @@ public class WeatherService {
     }
 
     public WeatherData getWeather() {
-        HttpHeaders headers = new HttpHeaders();
-        List<String> authheaders = new ArrayList<>();
-        authheaders.add(String.format("%s", System.getenv("DSKY_SKEY")));
-        headers.put("authorization", authheaders);
-        HttpEntity<WeatherData> response = template.exchange("https://api.darksky.net/forecast/{authorization}" +
-                "/35.2271,80.8431", HttpMethod.GET, null, WeatherData.class, authheaders);
+        Map<String, Object> id = new HashMap<>();
+        id.put("myID", (String.format("%s", System.getenv("DSKY_SKEY"))));
+
+        HttpEntity<WeatherData> response = template.exchange("https://api.darksky.net/forecast/{myID}" +
+                "/35.2271,80.8431", HttpMethod.GET, null, WeatherData.class, id);
 
         return response.getBody();
     }
