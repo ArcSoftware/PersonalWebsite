@@ -31,3 +31,9 @@ display:block;margin:30px
 .shows {
     display:block;
 }
+
+.albumDropdown {
+    position: absolute;
+        bottom: 0%;
+        right: 0%;
+}

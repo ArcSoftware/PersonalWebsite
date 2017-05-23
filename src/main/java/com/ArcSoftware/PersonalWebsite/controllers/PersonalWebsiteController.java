@@ -29,11 +29,12 @@ public class PersonalWebsiteController {
         return "index";
     }
 
-    @RequestMapping(path = "/dogs", method = RequestMethod.GET)
-    public String dogs(Model model) {
-        ImgurData imageData = imageService.getData();
+    @RequestMapping(path = "/albums", method = RequestMethod.GET)
+    public String albums(Model model) {
+        ImgurData imageData = imageService.getData("OqVcK");
         model.addAttribute("images", imageData.getImages());
-        return "dogs";
+        model.addAttribute("alb", true);
+        return "albums";
     }
 
     @RequestMapping(path = "/soundboard", method = RequestMethod.GET)
@@ -49,6 +50,13 @@ public class PersonalWebsiteController {
         model.addAttribute("weather", weatherData.getCurrent());
         return "weather";
     }
-
+    @RequestMapping(path = "/allAlbums", method = RequestMethod.GET)
+    public String allAlbums(Model model, String albumID) {
+        albumID = (albumID == null) ? "OqVcK" : albumID;
+        ImgurData imageData = imageService.getData(albumID);
+        model.addAttribute("images", imageData.getImages());
+        model.addAttribute("allAlbums", true);
+        return "albums";
+    }
 
 }
