@@ -47,7 +47,7 @@ public class PersonalWebsiteController {
     @RequestMapping(path = "/weather", method = RequestMethod.GET)
     public String weather(Model model) {
         WeatherData weatherData = weatherService.getWeather();
-        model.addAttribute("weather", weatherData.getCurrent());
+        model.addAttribute("weather", weatherData.getCurrently());
         return "weather";
     }
     @RequestMapping(path = "/allAlbums", method = RequestMethod.GET)

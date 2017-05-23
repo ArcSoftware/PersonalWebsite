@@ -10,7 +10,7 @@ public class WeatherData {
     private double longitude;
     private String timezone;
     private int offset;
-    private List<Currently> currently;
+    private Currently currently;
     private List<Alert> alerts;
 
     public double getLatitude() {
@@ -29,11 +29,7 @@ public class WeatherData {
         this.longitude = longitude;
     }
 
-    public List<Currently> getCurrent() {
-        return currently;
-    }
-
-    public void setCurrent(List<Currently> currently) {
+    public void setCurrently(Currently currently) {
         this.currently = currently;
     }
 
@@ -61,12 +57,8 @@ public class WeatherData {
         this.offset = offset;
     }
 
-    public List<Currently> getCurrently() {
+    public Currently getCurrently() {
         return currently;
-    }
-
-    public void setCurrently(List<Currently> currently) {
-        this.currently = currently;
     }
 
     public WeatherData() {
