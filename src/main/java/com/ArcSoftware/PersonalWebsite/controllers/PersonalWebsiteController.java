@@ -1,13 +1,21 @@
 package com.ArcSoftware.PersonalWebsite.controllers;
 
+import com.ArcSoftware.PersonalWebsite.entities.Message;
 import com.ArcSoftware.PersonalWebsite.models.ImgurData;
 import com.ArcSoftware.PersonalWebsite.models.WeatherData;
+import com.ArcSoftware.PersonalWebsite.repositories.MessageRepo;
 import com.ArcSoftware.PersonalWebsite.services.ImageService;
+import com.ArcSoftware.PersonalWebsite.services.MessageService;
 import com.ArcSoftware.PersonalWebsite.services.WeatherService;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by Jake on 5/18/17.
@@ -15,13 +23,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class PersonalWebsiteController {
-    ImageService imageService; //autowires our ImgurService into our presentation layer
+    ImageService imageService;
     WeatherService weatherService;
+    MessageService msg;
+    MessageRepo messageRepo;
 
-    public PersonalWebsiteController(ImageService imageService, WeatherService weatherService) {
+    public PersonalWebsiteController(ImageService imageService, WeatherService weatherService, MessageService msg,
+                                     MessageRepo messageRepo) {
         this.weatherService = weatherService;
         this.imageService = imageService;
+        this.msg = msg;
+        this.messageRepo = messageRepo;
     }
+
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String homePage(Model model) {
@@ -50,6 +64,7 @@ public class PersonalWebsiteController {
         model.addAttribute("weather", weatherData.getCurrently());
         return "weather";
     }
+
     @RequestMapping(path = "/allAlbums", method = RequestMethod.GET)
     public String allAlbums(Model model, String albumID) {
         albumID = (albumID == null) ? "OqVcK" : albumID;
@@ -59,4 +74,23 @@ public class PersonalWebsiteController {
         return "albums";
     }
 
+    @RequestMapping(path = "/chatroom", method = RequestMethod.GET)
+    public String chatroom(Model model) {
+        List<Message> allMessages= messageRepo.findFirst5ByOrderByIdDesc();
+        Collections.reverse(allMessages);
+        model.addAttribute("messages", allMessages);
+        return "chatroom";
+    }
+    @RequestMapping(path = "/addmessage", method = RequestMethod.POST)
+    public String messagePost(Model model, String message) {
+        Authentication currentAuth = SecurityContextHolder.getContext().getAuthentication();
+        String currentUser = currentAuth.getName();
+        msg.createMessage(currentUser, message);
+        return "redirect:/chatroom";
+    }
+
+    @RequestMapping(path = "/adminchat", method = RequestMethod.GET)
+    public String adminPage(Model model) {
+        return "adminchat";
+    }
 }

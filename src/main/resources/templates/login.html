@@ -1,0 +1,15 @@
+{{> partials/header}}
+<body class="bg-dark">
+    {{> partials/nav}}
+    <form action="/login" method="post" class="underNav">
+        <h2>Please Login to use the Chat Room:</h2>
+        <input type="text" name="username" placeholder="User Name" />
+        <input type="password" name="password" placeholder="Password" />
+        <input type="submit" value="Login" />
+    </form>
+
+    <a href="/new-user"><button>Create New User</button></a>
+
+    {{> partials/footer}}
+</body>
+</html>

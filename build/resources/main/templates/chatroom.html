@@ -1,0 +1,18 @@
+{{> partials/header}}
+<body class="bg-dark">
+{{> partials/nav}}
+<h1 class="underNav">Welcome to the Chat Room!</h1>
+{{#messages}}
+<ul>{{message}}</ul>
+{{/messages}}
+<form action="/addmessage" method="post">
+    <input type="text" name="message" placeholder="Enter your message here!"/>
+    <input type="submit" value="Message" />
+</form>
+
+<form action="/logout" method="post" class="underNav">
+    <input type="submit" value="Logout" />
+</form>
+{{> partials/footer}}
+</body>
+</html>
