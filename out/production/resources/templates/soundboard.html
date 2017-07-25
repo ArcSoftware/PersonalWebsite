@@ -1,0 +1,40 @@
+{{> partials/header}}
+<body class="bg-dark">
+{{> partials/nav}}
+<br><br><br>
+<h1>Welcome to my soundboard!</h1>
+<form style="color:#313994" action="/soundboard.html" method="get">
+    <select name="version">
+        <option value="normal">Normal</option>
+        <option value="dark">Dark</option>
+        <option value="female">Female</option>
+    </select>
+    <select name="name">
+        <option value="dominating">Dominating!</option>
+        <option value="firstblood">First Blood.</option>
+        <option value="godlike">God Like!</option>
+        <option value="killingspree">Killing Spree!</option>
+        <option value="ludicrouskill">Ludicrous Kill!</option>
+        <option value="monsterkill">Monster Kill!</option>
+        <option value="multikill">Multikill.</option>
+        <option value="play">Play.</option>
+        <option value="rampage">Rampage!</option>
+        <option value="ultrakill">Ultra Kill!</option>
+        <option value="unstoppable">Unstoppable!</option>
+        <option value="wickedsick">Wicked Sick!</option>
+    </select>
+    <button type="submit">Play!</button>
+</form>
+
+{{#soundname}}
+{{#version}}
+<!-- Simple audio playback -->
+<audio src="/{{version}}/{{soundname}}.wav" autoplay>
+    Your browser does not support the <code>audio</code> element.
+</audio>
+{{/version}}
+{{/soundname}}
+
+{{> partials/footer}}
+</body>
+</html>

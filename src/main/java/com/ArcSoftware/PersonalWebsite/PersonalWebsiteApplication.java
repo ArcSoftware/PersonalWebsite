@@ -11,6 +11,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import javax.sql.DataSource;
 
@@ -50,6 +52,7 @@ public class PersonalWebsiteApplication extends WebSecurityConfigurerAdapter{
 					.and()
 				.csrf().disable();
 	}
+
 	@Autowired
 	public void configureAuth(AuthenticationManagerBuilder auth, DataSource dataSource) throws Exception {
 		auth.jdbcAuthentication()
@@ -59,4 +62,13 @@ public class PersonalWebsiteApplication extends WebSecurityConfigurerAdapter{
 			.authoritiesByUsernameQuery("select users.username, authorities.role_name from users inner join authorities on users.id = authorities.user_id where users.username = ?");
 	}
 
+	@Bean
+	public ViewResolver getViewResolver()
+	{
+		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+		resolver.setPrefix("/WEB-INF/views/");
+		resolver.setSuffix(".jsp");
+
+		return resolver;
+	}
 }

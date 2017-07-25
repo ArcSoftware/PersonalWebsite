@@ -1,0 +1,44 @@
+.floatli {
+  width:20em;
+  float:left;
+}
+.divider {
+display:block;margin:30px 0;width:100px;height:2px;background-color:#fff
+}
+.titleText {
+display:block;margin:30px
+}
+.console {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 5.5em;
+}
+.flex {
+    display:flex;
+    flex-direction:row;
+    max-height:500px;
+    flex-wrap:wrap;
+
+}
+.img-responsive {
+    max-height:500px;
+
+}
+
+.hiddens {
+    display:none;
+}
+
+.shows {
+    display:block;
+}
+
+.albumDropdown {
+    position: absolute;
+        bottom: 0%;
+        right: 0%;
+}
+
+.underNav {
+    margin-top:100px;
+    color:#313994
+}

@@ -1,0 +1,21 @@
+{{> partials/header}}
+<body class="bg-dark">
+{{> partials/nav}}
+<section class="no-padding" id="dogs">
+    <div class="container-fluid">
+        <div class="row no-gutter popup-gallery">
+            <div>
+                <div class="flex">
+                    {{#images}}
+                    <img src="{{link}}" class="img-responsive" >
+                    {{/images}}
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+{{> partials/footer}}
+</body>
+</html>
